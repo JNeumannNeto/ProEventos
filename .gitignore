@@ -452,3 +452,8 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.vscode/launch.json
+.vscode/tasks.json
+Back/src/ProEventos.API/ProEventos.db
+Back/src/ProEventos.API/ProEventos.db-shm
+Back/src/ProEventos.API/ProEventos.db-wal
