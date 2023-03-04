@@ -17,6 +17,7 @@ using ProEventos.Application.Contratos;
 using ProEventos.Persistence;
 using ProEventos.Persistence.Contextos;
 using ProEventos.Persistence.Contratos;
+using AutoMapper;
 
 namespace ProEventos.API
 {
@@ -41,6 +42,10 @@ namespace ProEventos.API
                 .AddNewtonsoftJson(
                     x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
+
+            //Diz para o AutoMapper procurar no dominio corrente quais as classes que estão herdando de profile.
+            //Ver /Helpers/ProEventosProfile.cs
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IGeralPersist, GeralPersist>();
             services.AddScoped<IEventosService, EventosService>();

@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using ProEventos.Persistence;
-using ProEventos.Domain;
-using ProEventos.Persistence.Contextos;
 using ProEventos.Application.Contratos;
+using ProEventos.Application.Dtos;
 
 namespace ProEventos.API.Controllers;
 
@@ -22,7 +20,7 @@ public class EventosController : ControllerBase
         try
         {
             var eventos = await _eventoService.GetAllEventosAsync(true);
-            if(eventos == null) return NotFound("Nenhum evento encontrado.");
+            if(eventos == null) return NoContent();//Código HTTP 204 - Houve sucesso mas não houve erro. Não havia conteudo na base.
 
             return Ok(eventos);
         }
@@ -39,7 +37,7 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.GetEventoByIdAsync(id, true);
-            if(evento == null) return NotFound("Nenhum evento encontrado.");
+            if(evento == null) return NoContent();
 
             return Ok(evento);
         }
@@ -56,7 +54,7 @@ public class EventosController : ControllerBase
         try
         {
             var eventos = await _eventoService.GetAllEventosByTemaAsync(tema, true);
-            if(eventos == null) return NotFound("Nenhum evento encontrado por tema.");
+            if(eventos == null) return NoContent();
 
             return Ok(eventos);
         }
@@ -68,7 +66,7 @@ public class EventosController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Evento model)
+    public async Task<IActionResult> Post(EventoDto model)
     {
         try
         {
@@ -85,7 +83,7 @@ public class EventosController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, Evento model)
+    public async Task<IActionResult> Put(int id, EventoDto model)
     {
         try
         {
@@ -106,6 +104,9 @@ public class EventosController : ControllerBase
     {
         try
         {
+            var evento = await _eventoService.GetEventoByIdAsync(id, true);
+            if(evento == null) return NoContent();
+            
             if(await _eventoService.DeleteEvento(id)){
                 return Ok("Deletado");
             }

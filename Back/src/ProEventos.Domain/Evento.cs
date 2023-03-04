@@ -1,7 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ProEventos.Domain
 {
+    //[Table("NomeDaTabelaNoBanco")]
     public class Evento{
 
+        [Key]
         public int Id { get; set; }
 
         public string Local {get; set; }

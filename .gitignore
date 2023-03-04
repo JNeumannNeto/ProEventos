@@ -491,6 +491,7 @@ yarn-error.log
 
 # Miscellaneous
 Front/ProEventos-App/.angular/cache
+Front/ProEventos-App/.angular/cache/15.1.5/angular-webpack/*
 Front/ProEventos-App/dist
 *.pack
 .sass-cache/
@@ -499,6 +500,8 @@ Front/ProEventos-App/dist
 /libpeerconnection.log
 testem.log
 /typings
+Front/ProEventos-App/.angular/*.pack
+Front/ProEventos-App/.angular*
 
 # System files
 .DS_Store
